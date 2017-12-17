@@ -55,6 +55,7 @@ const handler: Handler = (
 	const templateId = params["template"];
 	const resolution = parseInt(params["resolution"] || "512");
 	const premium = params["premium"] === "true";
+	const locale = params["locale"] || "enUS";
 	// const build = params["build"] || "latest";
 
 	let texture: string;
@@ -67,6 +68,8 @@ const handler: Handler = (
 		for (let c of hsJson) {
 			if (c.id == templateId) {
 				cardObj = c;
+				cardObj.name = c.name[locale]
+				cardObj.text = c.text[locale]
 				break;
 			}
 		}
