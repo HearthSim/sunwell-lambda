@@ -4,6 +4,7 @@ provider:
   name: aws
   runtime: "nodejs6.10"
   memorySize: 128
+  timeout: 15
   deploymentBucket:
     name: hearthsim-lambda-artifacts
 
