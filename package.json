@@ -4,7 +4,6 @@
 	"devDependencies": {},
 	"license": "MIT",
 	"dependencies": {
-		"canvas": "^2.0.0-alpha.7",
 		"parse-css-font": "^2.0.2",
 		"request": "^2.83.0",
 		"sunwell": "^0.2.0",
