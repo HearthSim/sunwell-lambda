@@ -11,6 +11,7 @@ package:
   include:
     - "*.so.0"
     - "hs-fonts/*/*.ttf"
+    - "cards.json"
 
 functions:
   render:
