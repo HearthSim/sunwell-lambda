@@ -1,0 +1,19 @@
+{
+	"name": "sunwell-lambda",
+	"version": "0.0.0",
+	"devDependencies": {},
+	"license": "MIT",
+	"dependencies": {
+		"canvas": "^2.0.0-alpha.7",
+		"parse-css-font": "^2.0.2",
+		"request": "^2.83.0",
+		"sunwell": "^0.2.0",
+		"units-css": "^0.4.0"
+	},
+	"prettier": {
+		"bracketSpacing": false,
+		"trailingComma": "es5",
+		"tabWidth": 4,
+		"useTabs": true
+	}
+}
