@@ -31,4 +31,4 @@ plugins:
 custom:
   apigwBinary:
     types:
-      - "image/png"
+      - "*/*"
