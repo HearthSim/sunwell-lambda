@@ -41,6 +41,7 @@ const handler: Handler = (
 		titleFont: "Belwe",
 		bodyFontBold: "Franklin Gothic Bold",
 		bodyFontItalic: "Franklin Gothic Italic",
+		bodyFontBoldItalic: "Franklin Gothic Bold",
 		bodyFontRegular: "Franklin Gothic",
 		bodyFontSize: 38,
 		bodyLineHeight: 40,
@@ -48,6 +49,7 @@ const handler: Handler = (
 		assetFolder: `${__dirname}/node_modules/sunwell/dist/assets/`,
 		cacheSkeleton: false,
 	});
+	sunwell.options.bodyLineStyle = "";
 
 	const params = event.queryStringParameters || {};
 	const templateId = params["template"];
