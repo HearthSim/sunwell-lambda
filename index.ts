@@ -69,7 +69,8 @@ const handler: Handler = (
 			if (c.id == templateId) {
 				cardObj = c;
 				cardObj.name = c.name[locale]
-				cardObj.text = c.text[locale]
+				cardObj.text = c.collectionText[locale] || c.text[locale];
+				cardObj["collectionText"] = undefined;
 				break;
 			}
 		}
