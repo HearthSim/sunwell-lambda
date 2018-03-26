@@ -32,6 +32,24 @@ const fonts = {
 	"franklin-gothic/franklingothic-medcd.ttf": {family: "Franklin Gothic"},
 };
 
+const DEFAULT_LOCALE = "enUS";
+const SUPPORTED_LOCALES = [
+	"enUS",
+	"frFR",
+	"deDE",
+	"koKR",
+	"esES",
+	"esMX",
+	"ruRU",
+	"zhTW",
+	"zhCN",
+	"itIT",
+	"plPL",
+	"ptBR",
+	"jaJP",
+	"thTH",
+];
+
 const handler: Handler = (
 	event: APIGatewayEvent,
 	context: Context,
@@ -55,7 +73,10 @@ const handler: Handler = (
 	const templateId = params["template"];
 	const resolution = parseInt(params["resolution"] || "512");
 	const premium = params["premium"] === "true";
-	const locale = params["locale"] || "enUS";
+	const locale =
+		SUPPORTED_LOCALES.indexOf(params["locale"]) !== -1
+			? params["locale"]
+			: DEFAULT_LOCALE;
 	// const build = params["build"] || "latest";
 
 	let texture: string;
@@ -63,7 +84,7 @@ const handler: Handler = (
 
 	if (templateId) {
 		texture = `https://art.hearthstonejson.com/v1/orig/${templateId}.png`;
-		const hsJson = JSON.parse(readFileSync("cards.json", "utf8"));
+		const hsJson = JSON.parse(readFileSync(`${locale}.json`, "utf8"));
 
 		for (let c of hsJson) {
 			if (c.id == templateId) {
