@@ -1,7 +1,14 @@
 {
 	"name": "sunwell-lambda",
 	"version": "0.0.0",
-	"devDependencies": {},
+	"devDependencies": {
+		"@types/aws-lambda": "^0.0.34",
+		"@types/node": "^9.6.0",
+		"serverless": "^1.26.1",
+		"serverless-apigw-binary": "^0.4.4",
+		"serverless-offline": "^3.18.0",
+		"serverless-plugin-typescript": "^1.1.5"
+	},
 	"license": "MIT",
 	"dependencies": {
 		"parse-css-font": "^2.0.2",
