@@ -68,9 +68,10 @@ const handler: Handler = (
 		for (let c of hsJson) {
 			if (c.id == templateId) {
 				cardObj = c;
-				cardObj.name = c.name[locale]
-				cardObj.text = c.collectionText[locale] || c.text[locale];
+				cardObj.name = c.name;
+				cardObj.text = c.collectionText || c.text;
 				cardObj["collectionText"] = undefined;
+				cardObj.text = c.text;
 				break;
 			}
 		}
