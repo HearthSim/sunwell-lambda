@@ -11,6 +11,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
+		"linebreak": "^0.3.0",
 		"parse-css-font": "^2.0.2",
 		"request": "^2.83.0",
 		"sunwell": "^0.3.0",

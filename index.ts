@@ -6,7 +6,8 @@ import {
 	ProxyResult,
 } from "aws-lambda";
 import {Image, registerFont} from "canvas";
-import {readFileSync} from "fs";
+import {existsSync, readFileSync} from "fs";
+import {join} from "path";
 import * as https from "https";
 import * as Sunwell from "sunwell";
 
@@ -30,6 +31,8 @@ const fonts = {
 		style: "italic",
 	},
 	"franklin-gothic/franklingothic-medcd.ttf": {family: "Franklin Gothic"},
+	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal"},
+	"leisu-demi-b5ar/Leisu-Demi-B5RegularAR.ttf": {family: "AR Leisu Demi B5"},
 };
 
 const DEFAULT_LOCALE = "enUS";
@@ -61,6 +64,7 @@ const handler: Handler = (
 		bodyFontItalic: "Franklin Gothic Italic",
 		bodyFontBoldItalic: "Franklin Gothic Bold",
 		bodyFontRegular: "Franklin Gothic",
+		gemFont: "Belwe",
 		bodyFontSize: 38,
 		bodyLineHeight: 40,
 		bodyFontOffset: {x: 0, y: 26},
@@ -78,6 +82,14 @@ const handler: Handler = (
 			? params["locale"]
 			: DEFAULT_LOCALE;
 	// const build = params["build"] || "latest";
+
+	if (locale === "zhTW") {
+		sunwell.options.titleFont = "AR Leisu Demi B5";
+		sunwell.options.bodyFontBold = "BlizzardGlobal";
+		sunwell.options.bodyFontItalic = "BlizzardGlobal";
+		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal";
+		sunwell.options.bodyFontRegular = "BlizzardGlobal";
+	}
 
 	let texture: string;
 	let cardObj: SunwellCard;
@@ -103,14 +115,13 @@ const handler: Handler = (
 
 	// register fonts
 
+	const fontDir = `${__dirname}/hs-fonts`
 	for (let key of Object.keys(fonts)) {
 		let font = fonts[key];
-		/* let fontPath = path.join(args.font_dir, key);
-		if (!fs.existsSync(fontPath)) {
+		let fontPath = join(fontDir, key);
+		if (!existsSync(fontPath)) {
 			throw new Error(`Font not found: ${fontPath}`);
-		} else {
-			Canvas.registerFont(fontPath, font);
-		} */
+		}
 
 		registerFont(`${__dirname}/hs-fonts/${key}`, font);
 	}
