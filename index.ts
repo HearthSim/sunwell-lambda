@@ -108,6 +108,10 @@ const handler: Handler = (
 		for (let c of hsJson) {
 			if (c.id == templateId) {
 				cardObj = c;
+				if (c.type === "ENCHANTMENT") {
+					// Use a spell frame for enchantments
+					cardObj.type = "SPELL";
+				}
 				cardObj.name = c.name;
 				cardObj.text = c.collectionText || c.text;
 				cardObj["collectionText"] = undefined;
