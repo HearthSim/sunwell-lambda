@@ -31,7 +31,8 @@ const fonts = {
 		style: "italic",
 	},
 	"franklin-gothic/franklingothic-medcd.ttf": {family: "Franklin Gothic"},
-	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal"},
+	"blizzard-global/BlizzardGlobal.ttf": {family: "BlizzardGlobal"},
+	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal hant"},
 	"leisu-demi-b5ar/Leisu-Demi-B5RegularAR.ttf": {family: "AR Leisu Demi B5"},
 };
 
@@ -85,6 +86,12 @@ const handler: Handler = (
 
 	if (locale === "zhTW") {
 		sunwell.options.titleFont = "AR Leisu Demi B5";
+		sunwell.options.bodyFontBold = "BlizzardGlobal Hant";
+		sunwell.options.bodyFontItalic = "BlizzardGlobal Hant";
+		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal Hant";
+		sunwell.options.bodyFontRegular = "BlizzardGlobal Hant";
+	} else if (locale === "ruRU") {
+		// sunwell.options.titleFont = "BlizzardGlobal";
 		sunwell.options.bodyFontBold = "BlizzardGlobal";
 		sunwell.options.bodyFontItalic = "BlizzardGlobal";
 		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal";
