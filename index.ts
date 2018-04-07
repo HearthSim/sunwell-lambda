@@ -1,5 +1,5 @@
 import {
-	APIGatewayEvent,
+	APIGatewayProxyEvent,
 	Handler,
 	Context,
 	Callback,
@@ -55,7 +55,7 @@ const SUPPORTED_LOCALES = [
 ];
 
 const handler: Handler = (
-	event: APIGatewayEvent,
+	event: APIGatewayProxyEvent,
 	context: Context,
 	callback: Callback
 ) => {
