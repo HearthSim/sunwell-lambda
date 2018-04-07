@@ -115,7 +115,7 @@ const handler: Handler = (
 
 	// register fonts
 
-	const fontDir = `${__dirname}/hs-fonts`
+	const fontDir = `${__dirname}/hs-fonts`;
 	for (let key of Object.keys(fonts)) {
 		let font = fonts[key];
 		let fontPath = join(fontDir, key);
@@ -130,7 +130,14 @@ const handler: Handler = (
 	https.get(texture, res => {
 		const {statusCode} = res;
 		if (statusCode !== 200) {
-			throw new Error("unexpected status code");
+			return callback(undefined, {
+				statusCode: 502,
+				headers: {"content-type": "application/json"},
+				body: JSON.stringify({
+					error: "texture_not_found",
+					detail: `Got ${statusCode} when attempting to download ${texture}`,
+				}),
+			});
 		}
 
 		let data: any[] = [];
@@ -156,7 +163,7 @@ const handler: Handler = (
 
 					const response: ProxyResult = {
 						statusCode: 200,
-						headers: {"Content-Type": "image/png"},
+						headers: {"content-type": "image/png"},
 						body: buf.toString("base64"),
 						isBase64Encoded: true,
 					};
