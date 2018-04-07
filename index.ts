@@ -75,7 +75,7 @@ const handler: Handler = (
 	sunwell.options.bodyLineStyle = "";
 
 	const params = event.queryStringParameters || {};
-	const templateId = params["template"];
+	let templateId = params["template"];
 	const resolution = parseInt(params["resolution"] || "512");
 	const premium = params["premium"] === "true";
 	const locale =
@@ -101,9 +101,15 @@ const handler: Handler = (
 	let texture: string;
 	let cardObj: SunwellCard;
 
+	const hsJson = JSON.parse(readFileSync(`${locale}.json`, "utf8"));
+	if (!templateId) {
+		let keys = Object.keys(hsJson);
+		templateId = hsJson[keys[(keys.length * Math.random()) << 0]].id;
+		console.log("Randomly picked", templateId);
+	}
+
 	if (templateId) {
 		texture = `https://art.hearthstonejson.com/v1/orig/${templateId}.png`;
-		const hsJson = JSON.parse(readFileSync(`${locale}.json`, "utf8"));
 
 		for (let c of hsJson) {
 			if (c.id == templateId) {
