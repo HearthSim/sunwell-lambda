@@ -5,6 +5,7 @@ import {
 	Callback,
 	ProxyResult,
 } from "aws-lambda";
+import * as AWS from "aws-sdk";
 import {Image, registerFont} from "canvas";
 import {existsSync, readFileSync} from "fs";
 import {join} from "path";
@@ -54,6 +55,39 @@ const SUPPORTED_LOCALES = [
 	"thTH",
 ];
 
+function onRender(canvas: any, key: string, callback: Callback) {
+	const buf = canvas.toBuffer();
+	const response: ProxyResult = {
+		statusCode: 200,
+		headers: {"content-type": "image/png"},
+		body: buf.toString("base64"),
+		isBase64Encoded: true,
+	};
+
+	if (key) {
+		const s3 = new AWS.S3();
+		console.log(`Saving image to ${key}...`);
+		s3.putObject(
+			{
+				Bucket: "art.hearthstonejson.com",
+				Key: key,
+				Body: buf,
+				ContentType: "image/png",
+			},
+			(err: any, data: any) => {
+				if (err) {
+					throw new Error(err);
+				}
+
+				return callback(undefined, response);
+			}
+		);
+	} else {
+		console.log("Not saving the results to S3");
+		return callback(undefined, response);
+	}
+}
+
 const handler: Handler = (
 	event: APIGatewayProxyEvent,
 	context: Context,
@@ -99,7 +133,9 @@ const handler: Handler = (
 	}
 
 	let texture: string;
+	let uploadKey: string;
 	let cardObj: SunwellCard;
+	const format = "png"; // WebP? https://github.com/Automattic/node-canvas/issues/562
 
 	const hsJson = JSON.parse(readFileSync(`${locale}.json`, "utf8"));
 	if (!templateId) {
@@ -122,6 +158,10 @@ const handler: Handler = (
 				cardObj.text = c.collectionText || c.text;
 				cardObj["collectionText"] = undefined;
 				cardObj.text = c.text;
+
+				uploadKey = `v1/render/latest/${locale}/${resolution}x/${
+					c.id
+				}.${format}`;
 				break;
 			}
 		}
@@ -174,19 +214,7 @@ const handler: Handler = (
 				resolution,
 				premium,
 				null,
-				(canvas: any) => {
-					const buf = canvas.toBuffer();
-					// writeFileSync("out.png", buf);
-
-					const response: ProxyResult = {
-						statusCode: 200,
-						headers: {"content-type": "image/png"},
-						body: buf.toString("base64"),
-						isBase64Encoded: true,
-					};
-
-					callback(undefined, response);
-				}
+				(canvas: any) => onRender(canvas, uploadKey, callback)
 			);
 		});
 	});
