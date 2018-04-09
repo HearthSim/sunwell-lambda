@@ -4,6 +4,7 @@
 	"devDependencies": {
 		"@types/aws-lambda": "^0.0.34",
 		"@types/node": "^9.6.0",
+		"node-gyp": "^3.6.2",
 		"serverless": "^1.26.1",
 		"serverless-apigw-binary": "^0.4.4",
 		"serverless-offline": "^3.18.0",
@@ -11,10 +12,11 @@
 	},
 	"license": "MIT",
 	"dependencies": {
+		"aws-sdk": "^2.222.1",
 		"linebreak": "^0.3.0",
 		"parse-css-font": "^2.0.2",
 		"request": "^2.83.0",
-		"sunwell": "0.4.0",
+		"sunwell": "0.5.0",
 		"units-css": "^0.4.0"
 	},
 	"prettier": {
