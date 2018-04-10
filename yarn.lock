@@ -2661,9 +2661,9 @@ subtext@4.x.x:
     pez "2.x.x"
     wreck "12.x.x"
 
-sunwell@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.5.0.tgz#31ac467efa8de8a44e04386ba052f1d0824b07f2"
+sunwell@^0.6.0:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.6.1.tgz#5254c0bbc81d6994cb09eb28b455448dc15236c2"
   dependencies:
     argparse "^1.0.9"
     canvas "^2.0.0-alpha.12"
