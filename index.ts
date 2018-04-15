@@ -35,6 +35,7 @@ const fonts = {
 	"blizzard-global/BlizzardGlobal.ttf": {family: "BlizzardGlobal"},
 	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal hant"},
 	"leisu-demi-b5ar/Leisu-Demi-B5RegularAR.ttf": {family: "AR Leisu Demi B5"},
+	"benguiat-bold-itc/BNT85.ttf": {family: "BenguiatBoldITC"},
 };
 
 const DEFAULT_LOCALE = "enUS";
@@ -125,7 +126,7 @@ const handler: Handler = (
 		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal Hant";
 		sunwell.options.bodyFontRegular = "BlizzardGlobal Hant";
 	} else if (locale === "ruRU") {
-		// sunwell.options.titleFont = "BlizzardGlobal";
+		sunwell.options.titleFont = "BenguiatBoldITC";
 		sunwell.options.bodyFontBold = "BlizzardGlobal";
 		sunwell.options.bodyFontItalic = "BlizzardGlobal";
 		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal";
