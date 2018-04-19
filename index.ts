@@ -19,23 +19,36 @@ interface SunwellCard {
 	cardClass?: string;
 	cost?: Number;
 	texture?: Image;
+	language?: string;
 }
 
 const fonts = {
 	"belwe/belwe-extrabold.ttf": {family: "Belwe"},
-	"franklin-gothic-bold/franklingothic-demicd.ttf": {
+	"franklin-gothic-bold/FRADMCN.TTF": {
 		family: "Franklin Gothic Bold",
 		weight: "bold",
 	},
-	"franklin-gothic-italic/franklingothic-medcdit.ttf": {
+	"franklin-gothic-italic/FRAMDIT.TTF": {
 		family: "Franklin Gothic Italic",
 		style: "italic",
 	},
-	"franklin-gothic/franklingothic-medcd.ttf": {family: "Franklin Gothic"},
+	"franklin-gothic-bolditalic/FRADMIT.TTF": {
+		family: "Franklin Gothic Bold Italic",
+		style: "italic",
+		weight: "bold",
+	},
+	"franklin-gothic/FRAMDCN.TTF": {family: "Franklin Gothic"},
 	"blizzard-global/BlizzardGlobal.ttf": {family: "BlizzardGlobal"},
 	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal hant"},
 	"leisu-demi-b5ar/Leisu-Demi-B5RegularAR.ttf": {family: "AR Leisu Demi B5"},
+	"lisu-gb-medium/LisuGBMediumAR.ttf": {family: "Lisu GB Medium AR"},
 	"benguiat-bold-itc/BNT85.ttf": {family: "BenguiatBoldITC"},
+	"PSLAsadongProRegular/PSL025pro.ttf": {family: "PSL Asadong Pro Regular"},
+	"PSLPaksinProRegular/PSL013pro.ttf": {family: "PSL Paksin Pro Regular"},
+	"shuei-marugo/ShueiMGoL_20160225.ttf": {family: "Shuei MaruGo L"},
+	"hanabotan/RAHanabotanBelDB_P.ttf": {family: "HanaBotan Bel DB"},
+	"SapphIIM/YDISapphIIM.ttf": {family: "SapphIIM"},
+	"2002L/2002.ttf": {family: "2002L"},
 };
 
 const DEFAULT_LOCALE = "enUS";
@@ -98,7 +111,7 @@ const handler: Handler = (
 		titleFont: "Belwe",
 		bodyFontBold: "Franklin Gothic Bold",
 		bodyFontItalic: "Franklin Gothic Italic",
-		bodyFontBoldItalic: "Franklin Gothic Bold",
+		bodyFontBoldItalic: "Franklin Gothic Bold Italic",
 		bodyFontRegular: "Franklin Gothic",
 		gemFont: "Belwe",
 		bodyFontSize: 38,
@@ -119,18 +132,38 @@ const handler: Handler = (
 			: DEFAULT_LOCALE;
 	// const build = params["build"] || "latest";
 
-	if (locale === "zhTW") {
+	if (locale === "ruRU") {
+		sunwell.options.titleFont = "BenguiatBoldITC";
+	} else if (locale === "jaJP") {
+		sunwell.options.titleFont = "HanaBotan Bel DB";
+		sunwell.options.bodyFontBold = "Shuei MaruGo L";
+		sunwell.options.bodyFontItalic = "Shuei MaruGo L";
+		sunwell.options.bodyFontBoldItalic = "Shuei MaruGo L";
+		sunwell.options.bodyFontRegular = "Shuei MaruGo L";
+	} else if (locale === "koKR") {
+		sunwell.options.titleFont = "SapphIIM";
+		sunwell.options.bodyFontBold = "2002L";
+		sunwell.options.bodyFontItalic = "2002L";
+		sunwell.options.bodyFontBoldItalic = "2002L";
+		sunwell.options.bodyFontRegular = "2002L";
+		sunwell.options.bodyFontSize = 30;
+	} else if (locale === "zhTW") {
 		sunwell.options.titleFont = "AR Leisu Demi B5";
 		sunwell.options.bodyFontBold = "BlizzardGlobal Hant";
 		sunwell.options.bodyFontItalic = "BlizzardGlobal Hant";
 		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal Hant";
 		sunwell.options.bodyFontRegular = "BlizzardGlobal Hant";
-	} else if (locale === "ruRU") {
-		sunwell.options.titleFont = "BenguiatBoldITC";
+		sunwell.options.bodyFontSize = 30;
+	} else if (locale === "zhCN") {
+		sunwell.options.titleFont = "Lisu GB Medium AR";
 		sunwell.options.bodyFontBold = "BlizzardGlobal";
 		sunwell.options.bodyFontItalic = "BlizzardGlobal";
 		sunwell.options.bodyFontBoldItalic = "BlizzardGlobal";
 		sunwell.options.bodyFontRegular = "BlizzardGlobal";
+		sunwell.options.bodyFontSize = 30;
+	} else if (locale === "thTH") {
+		sunwell.options.titleFont = "PSL Asadong Pro Regular";
+		sunwell.options.bodyFontRegular = "PSL Paksin Pro Regular";
 	}
 
 	let texture: string;
@@ -159,6 +192,7 @@ const handler: Handler = (
 				cardObj.text = c.collectionText || c.text;
 				cardObj["collectionText"] = undefined;
 				cardObj.text = c.text;
+				cardObj.language = locale;
 
 				uploadKey = `v1/render/latest/${locale}/${resolution}x/${
 					c.id
