@@ -1933,8 +1933,8 @@ node-gyp@^3.6.2:
     which "1"
 
 node-pre-gyp@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.9.0.tgz#bdd4c3afac9b1b1ebff0a9ff3362859eb6781bb8"
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.9.1.tgz#f11c07516dd92f87199dbc7e1838eab7cd56c9e0"
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -2681,9 +2681,9 @@ subtext@4.x.x:
     pez "2.x.x"
     wreck "12.x.x"
 
-sunwell@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.7.0.tgz#3af63a940ffe9b5d295682147828e2cac6045a2a"
+sunwell@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.7.1.tgz#af2e0867ab94cccbcb692483de200d90410160b6"
   dependencies:
     argparse "^1.0.9"
     canvas "^2.0.0-alpha.12"
