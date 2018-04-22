@@ -24,20 +24,20 @@ interface SunwellCard {
 
 const fonts = {
 	"belwe/belwe-extrabold.ttf": {family: "Belwe"},
-	"franklin-gothic-bold/FRADMCN.TTF": {
+	"franklin-gothic-bold/FRADMCN.ttf": {
 		family: "Franklin Gothic Bold",
 		weight: "bold",
 	},
-	"franklin-gothic-italic/FRAMDIT.TTF": {
+	"franklin-gothic-italic/FRAMDIT.ttf": {
 		family: "Franklin Gothic Italic",
 		style: "italic",
 	},
-	"franklin-gothic-bolditalic/FRADMIT.TTF": {
+	"franklin-gothic-bolditalic/FRADMIT.ttf": {
 		family: "Franklin Gothic Bold Italic",
 		style: "italic",
 		weight: "bold",
 	},
-	"franklin-gothic/FRAMDCN.TTF": {family: "Franklin Gothic"},
+	"franklin-gothic/FRAMDCN.ttf": {family: "Franklin Gothic"},
 	"blizzard-global/BlizzardGlobal.ttf": {family: "BlizzardGlobal"},
 	"blizzard-global/BlizzardGlobal-zhTW.ttf": {family: "BlizzardGlobal hant"},
 	"leisu-demi-b5ar/Leisu-Demi-B5RegularAR.ttf": {family: "AR Leisu Demi B5"},
