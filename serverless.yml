@@ -13,6 +13,7 @@ package:
     - "*.so.0"
     - "hs-fonts/*/*.ttf"
     - "*.json"
+    - "missing.png"
 
 functions:
   render:

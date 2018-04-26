@@ -219,40 +219,50 @@ const handler: Handler = (
 	}
 
 	// Download texture
-	https.get(texture, res => {
-		const {statusCode} = res;
-		if (statusCode !== 200) {
-			return callback(undefined, {
-				statusCode: 502,
-				headers: {"content-type": "application/json"},
-				body: JSON.stringify({
-					error: "texture_not_found",
-					detail: `Got ${statusCode} when attempting to download ${texture}`,
-				}),
-			});
-		}
+	https
+		.get(texture, response => {
+			const {statusCode} = response;
+			const data: Buffer[] = [];
 
-		let data: any[] = [];
-		res.on("data", chunk => {
-			data.push(chunk);
+			const finishRequest = () => {
+				const buffer = Buffer.concat(data);
+				console.log("data", data);
+
+				if (!cardObj) {
+					throw new Error(`Could not find card ${templateId}.`);
+				}
+
+				// read texture, turn into an Image
+				cardObj.texture = new Image();
+				cardObj.texture.src = buffer;
+
+				sunwell.createCard(
+					cardObj,
+					resolution,
+					premium,
+					null,
+					(canvas: any) => onRender(canvas, uploadKey, callback)
+				);
+			};
+
+			if (statusCode !== 200) {
+				console.error(
+					`Error getting texture ${texture}. Card will be grey.`
+				);
+				const missingTexture = readFileSync("missing.png");
+				data.push(missingTexture);
+				return finishRequest();
+			} else {
+				response.on("data", chunk => {
+					data.push(chunk as Buffer);
+				});
+			}
+
+			response.on("end", finishRequest);
+		})
+		.on("error", e => {
+			console.error(e);
 		});
-
-		res.on("end", () => {
-			const buffer = Buffer.concat(data);
-
-			// read texture, turn into an Image
-			cardObj.texture = new Image();
-			cardObj.texture.src = buffer;
-
-			sunwell.createCard(
-				cardObj,
-				resolution,
-				premium,
-				null,
-				(canvas: any) => onRender(canvas, uploadKey, callback)
-			);
-		});
-	});
 };
 
 export {handler};
