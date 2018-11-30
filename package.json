@@ -16,7 +16,7 @@
 		"linebreak": "^0.3.0",
 		"parse-css-font": "^2.0.2",
 		"request": "^2.83.0",
-		"sunwell": "^0.7.1",
+		"sunwell": "^0.9.0",
 		"units-css": "^0.4.0"
 	},
 	"prettier": {
