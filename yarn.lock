@@ -2959,9 +2959,10 @@ subtext@4.x.x:
     pez "2.x.x"
     wreck "12.x.x"
 
-sunwell@^0.9.0:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.9.1.tgz#6d35d933c42f602924537b0fdae96f8e6de888a9"
+sunwell@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/sunwell/-/sunwell-0.10.0.tgz#909913b44e2539ad4a0dbf8bb1ff95a49d3b2f17"
+  integrity sha512-2r5RTb3f9+DyTgZx44f3FjUswdtp2oFiJ+5Q8AkNL9W5pTo8rbEk0KD6ijD2zOPCZtxaKTDRxIrRc+8qMr/Wmg==
   dependencies:
     argparse "^1.0.9"
     canvas "^2.0.0-alpha.12"
